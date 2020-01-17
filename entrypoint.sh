@@ -1,7 +1,8 @@
 #!/bin/bash
 set -ex
 
-helm
+export HELM_PLUGIN_PUSH_VERSION=v0.8.1
+helm plugin install https://github.com/chartmuseum/helm-push.git --version ${HELM_PLUGIN_PUSH_VERSION}
 
 export INPUT_CHARTS_FOLDER=${INPUT_CHARTS_FOLDER:-.}
 
