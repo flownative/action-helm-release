@@ -1,4 +1,4 @@
-# Helm Push Action
+# Helm Release Action
 
 This Github action allows you to package and push [Helm](https://helm.sh) charts to a repository (for example,
 [Chartmuseum](https://chartmuseum.com/)).
@@ -35,11 +35,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Determine latest released version
+        id: latest_version
+        uses: flownative/action-git-latest-release@v1
+
+
       - name: Release Helm chart
-        uses: flownative/action-helm-push@v1
+        uses: flownative/action-helm-release@v1
         with:
           charts_folder: 'Helm'
           chart_name: 'example-app'
+          chart_version: ${{ steps.latest_version.outputs.tag }}
+          app_version: ${{ steps.latest_version.outputs.tag }}
           repository_url: 'https://charts.example.com'
           repository_user: '${{ secrets.CHARTMUSEUM_USER }}'
           repository_password: '${{ secrets.CHARTMUSEUM_PASSWORD }}'

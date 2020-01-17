@@ -26,8 +26,18 @@ if [ -z "${INPUT_REPOSITORY_PASSWORD}" ]; then
   exit 1
 fi
 
+if [ -z "${INPUT_CHART_VERSION}" ]; then
+  echo "chart_version is not set"
+  exit 1
+fi
+
+if [ -z "${INPUT_APP_VERSION}" ]; then
+  echo "app_version is not set"
+  exit 1
+fi
+
 cd "${INPUT_CHARTS_FOLDER}/${INPUT_CHART_NAME}"
 
 helm inspect chart .
-helm package .
+helm package --app-version "${INPUT_APP_VERSION}" --version "${INPUT_CHART_VERSION}" .
 helm push "${INPUT_CHART_NAME}"-* "${INPUT_REPOSITORY_URL}" --username "${INPUT_REPOSITORY_USER}" --password "${INPUT_REPOSITORY_PASSWORD}" --force
