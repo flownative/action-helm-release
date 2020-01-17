@@ -1,6 +1,8 @@
 #!/bin/bash
 set -ex
 
+helm
+
 export INPUT_CHARTS_FOLDER=${INPUT_CHARTS_FOLDER:-.}
 
 if [ -z "${INPUT_CHART_NAME}" ]; then
