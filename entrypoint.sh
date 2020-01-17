@@ -27,6 +27,4 @@ cd "${INPUT_CHARTS_FOLDER}/${INPUT_CHART_NAME}"
 
 helm inspect chart .
 helm package .
-helm
-helm push --help
 helm push "${INPUT_CHART_NAME}"-* "${INPUT_REPOSITORY_URL}" --username "${INPUT_REPOSITORY_USER}" --password "${INPUT_REPOSITORY_PASSWORD}" --force
