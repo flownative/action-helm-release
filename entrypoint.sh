@@ -39,8 +39,8 @@ fi
 INPUT_CHART_VERSION=$(echo "${INPUT_CHART_VERSION}" | sed -e 's|refs/tags||' | sed -e 's/^v//')
 INPUT_APP_VERSION=$(echo "${INPUT_APP_VERSION}" | sed -e 's|refs/tags||' | sed -e 's/^v//')
 
-cd "${INPUT_CHARTS_FOLDER}/${INPUT_CHART_NAME}"
+cd "${INPUT_CHARTS_FOLDER}"
 
-helm inspect chart .
-helm package --app-version "${INPUT_APP_VERSION}" --version "${INPUT_CHART_VERSION}" .
-helm push "${INPUT_CHART_NAME}"-* "${INPUT_REPOSITORY_URL}" --username "${INPUT_REPOSITORY_USER}" --password "${INPUT_REPOSITORY_PASSWORD}" --force
+helm inspect chart "${INPUT_CHART_NAME}"
+helm package --app-version "${INPUT_APP_VERSION}" --version "${INPUT_CHART_VERSION}" "${INPUT_CHART_NAME}"
+helm push "${INPUT_CHART_NAME}-${INPUT_CHART_VERSION}.tgz" "${INPUT_REPOSITORY_URL}" --username "${INPUT_REPOSITORY_USER}" --password "${INPUT_REPOSITORY_PASSWORD}" --force
