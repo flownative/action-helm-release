@@ -36,6 +36,9 @@ if [ -z "${INPUT_APP_VERSION}" ]; then
   exit 1
 fi
 
+INPUT_CHART_VERSION=$(echo "${INPUT_CHART_VERSION}" | sed -e 's|refs/tags||' | sed -e 's/^v//')
+INPUT_APP_VERSION=$(echo "${INPUT_APP_VERSION}" | sed -e 's|refs/tags||' | sed -e 's/^v//')
+
 cd "${INPUT_CHARTS_FOLDER}/${INPUT_CHART_NAME}"
 
 helm inspect chart .
