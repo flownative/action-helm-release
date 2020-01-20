@@ -1,8 +1,7 @@
 #!/bin/bash
 set -ex
 
-export HELM_PLUGIN_PUSH_VERSION=v0.8.1
-helm plugin install https://github.com/chartmuseum/helm-push.git --version ${HELM_PLUGIN_PUSH_VERSION}
+helm plugin install https://github.com/chartmuseum/helm-push.git
 
 export INPUT_CHARTS_FOLDER=${INPUT_CHARTS_FOLDER:-.}
 
@@ -37,7 +36,7 @@ if [ -z "${INPUT_APP_VERSION}" ]; then
 fi
 
 INPUT_CHART_VERSION=$(echo "${INPUT_CHART_VERSION}" | sed -e 's|refs/tags||' | sed -e 's/^v//')
-INPUT_APP_VERSION=$(echo "${INPUT_APP_VERSION}" | sed -e 's|refs/tags||' | sed -e 's/^v//')
+INPUT_APP_VERSION=$(echo "${INPUT_APP_VERSION}" | sed -e 's|refs/tags||' | sed -e 's/^v//' | sed -e 's/+.*//')
 
 cd "${INPUT_CHARTS_FOLDER}"
 
