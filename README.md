@@ -51,3 +51,10 @@ jobs:
           repository_user: '${{ secrets.CHARTMUSEUM_USER }}'
           repository_password: '${{ secrets.CHARTMUSEUM_PASSWORD }}'
 ````
+
+## Implementation Note
+
+The repository of this action does not contain the actual implementation code. Instead, it's referring to a pre-build
+image in its `Dockerfile` in order to save resources and speed up workflow runs.
+
+The code of this action can be found [here](https://github.com/flownative/docker-action-helm-release).
