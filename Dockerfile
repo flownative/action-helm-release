@@ -1,1 +1,1 @@
-FROM flownative/action-helm-release:1
+FROM flownative/action-helm-release:2

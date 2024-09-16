@@ -7,7 +7,7 @@ inputs:
     required: false
     default: '.'
   chart_name:
-    description: 'Name of the Helm chart'
+    description: 'Name of the Helm chart, to be used in the URI to push to. For example, `coffee-manager`'
     required: true
     default: ''
   chart_version:
@@ -18,8 +18,12 @@ inputs:
     description: 'The tag / version to use as an app version. For example, `1.2.5-12`. A "v" prefix will be stripped automatically.'
     required: true
     default: ''
-  repository_url:
-    description: 'URL leading to the repository to push to. For instance: "https://charts.example.com"'
+  registry_host:
+    description: 'Host name of the OCI compatible registry. For instance: "harbor.example.com"'
+    required: true
+    default: ''
+  repository_path:
+    description: 'Relative path leading to the repository to push to. For instance: "acme-charts"'
     required: true
     default: ''
   repository_user:
