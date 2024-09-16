@@ -1,5 +1,5 @@
-name: 'Helm Push'
-description: 'Push Helm charts to a repository using Helm 3'
+name: 'Flownative Helm OCI Release'
+description: 'Push Helm charts to an OCI compatible repository'
 author: 'Flownative'
 inputs:
   charts_folder:
